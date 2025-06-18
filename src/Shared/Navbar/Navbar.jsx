@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import logo from '../../../public/Vibrant_Geometric_Logo_-_Road_Hub-removebg-preview.png'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -12,7 +13,8 @@ const Navbar = () => {
 
             {/* login button or profile*/}
             <div>
-                <button className='w-28 h-14 bg-cyan-800 text-xl font-bold text-white flex justify-center items-center rounded-3xl hover:bg-cyan-950'>Login</button>
+                <Link to='/login'><button className='w-28 h-14 bg-cyan-800 text-xl font-bold text-white flex justify-center items-center rounded-3xl hover:bg-cyan-950'>Login</button>
+                </Link>
             </div>
         </div>
     )

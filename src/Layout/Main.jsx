@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from '../Shared/Navbar/Navbar';
 import Footer from '../Shared/Footer/Footer';
 
 const Main = () => {
 
+  const location = useLocation();
+
+  const noNavFoot = location.pathname.includes('login');
+
   return (
-    <div className= 'ml-5 mr-10'>
-      <Navbar></Navbar>
+    <div className='ml-5 mr-10'>
+      {noNavFoot || <Navbar></Navbar>}
       <Outlet></Outlet>
-      <Footer></Footer>
+      {noNavFoot || <Footer></Footer>}
     </div>
   )
 
@@ -17,5 +21,5 @@ const Main = () => {
 
 export default Main;
 
-    
+
 
