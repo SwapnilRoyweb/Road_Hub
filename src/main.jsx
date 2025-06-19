@@ -9,18 +9,19 @@ import Main from './Layout/Main.jsx';
 import Home from './Home/Home/Home.jsx';
 import Login from './SignIn_Up/SignIn/Login.jsx';
 import Signup from './SignIn_Up/SignUp/Signup.jsx';
+import Authprovider from './Providers/Authprovider.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Main></Main>,
-    children : [
+    children: [
       {
         path: '/',
         element: <Home></Home>
       },
       {
-        path : 'login',
+        path: 'login',
         element: <Login></Login>
       },
       {
@@ -33,8 +34,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}>
-
-    </RouterProvider>
+    <Authprovider>
+      <RouterProvider router={router}>
+      </RouterProvider>
+    </Authprovider>
   </StrictMode>,
 )
