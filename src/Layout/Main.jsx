@@ -7,7 +7,7 @@ const Main = () => {
 
   const location = useLocation();
 
-  const noNavFoot = location.pathname.includes('login');
+  const noNavFoot = location.pathname.includes('login') || location.pathname.includes('signUp');
 
   return (
     <div className='ml-5 mr-10'>
