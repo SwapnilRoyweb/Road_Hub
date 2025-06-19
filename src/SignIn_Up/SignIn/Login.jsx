@@ -24,7 +24,7 @@ const Login = () => {
             const loggedUser = result.user;
             console.log(loggedUser);
             form.reset();
-            navigate(form, {replace: true});
+            navigate(from, {replace: true});
         })
         .catch(error => {
             console.log(error)
@@ -38,7 +38,7 @@ const Login = () => {
                 <div className='backdrop-blur-md w-fit h-fit p-10 rounded-2xl'>
                     <h1 className='text-center text-3xl bg-cyan-950 p-3 rounded-md text-white font-bold w-lg border-white border-x-2'>Please, Sign In</h1>
                     {/* email & pass */}
-                    <form className='flex flex-col justify-center  items-center gap-5 mt-10'>
+                    <form className='flex flex-col justify-center  items-center gap-5 mt-10' onSubmit={handleLogin}>
 
                         <div className='flex items-center justify-center gap-3'>
                             <label htmlFor="email" className='text-xl font-bold text-black'>Your Email :</label>
