@@ -14,6 +14,7 @@ const Signup = () => {
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
+        const user_or_admin = form.user_admin.value;
         const password = form.pass.value;
         // console.log(name, email, password);
 
@@ -24,7 +25,7 @@ const Signup = () => {
                     .then(() => {
                         console.log('update user')
 
-                        const signedUser = { name: loggedUser.displayName, email: loggedUser.email };
+                        const signedUser = { name: loggedUser.displayName, email: loggedUser.email, user_or_admin };
                         fetch('http://localhost:3000/users', {
                             method: 'POST',
                             headers: {
@@ -36,7 +37,13 @@ const Signup = () => {
                             .then(data => {
                                 console.log(data);
                                 if (data.insertedId) {
-                                    navigate('/');
+                                    console.log(signedUser);
+                                    if(signedUser.user_or_admin == 'admin'){
+                                        navigate('/adminHome')
+                                    }else{
+                                        navigate('/');
+                                    }
+                                    
                                 }
                             })
 
@@ -65,6 +72,11 @@ const Signup = () => {
                         <div className='flex items-center justify-center gap-3'>
                             <label htmlFor="email" className='text-xl font-bold text-black'>Your Email :</label>
                             <input type="email" name='email' className='w-xs h-10 bg-white rounded-full border-x-2 p-2' />
+                        </div>
+
+                        <div className='flex items-center justify-center gap-3'>
+                            <label htmlFor="email" className='text-xl font-bold text-black '>Sign Up as :</label>
+                            <input type="text" name='user_admin' value='user' className='w-xs h-10 bg-white rounded-full border-x-2 p-2' />
                         </div>
 
                         <div className='flex items-center justify-center gap-3'>

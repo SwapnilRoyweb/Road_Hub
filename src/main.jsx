@@ -11,6 +11,7 @@ import Login from './SignIn_Up/SignIn/Login.jsx';
 import Signup from './SignIn_Up/SignUp/Signup.jsx';
 import Authprovider from './Providers/Authprovider.jsx';
 import Privateroute from './Routes/Privateroute.jsx';
+import AdminHome from './Home/AdminHome/AdminHome.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: 'signUp',
         element: <Signup></Signup>
+      },
+      {
+        path: 'adminHome',
+        element: <Privateroute><AdminHome></AdminHome></Privateroute>
       }
     ]
   }
