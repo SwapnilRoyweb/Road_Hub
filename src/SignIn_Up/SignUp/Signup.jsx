@@ -15,17 +15,33 @@ const Signup = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.pass.value;
-        console.log(name, email, password);
+        // console.log(name, email, password);
 
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
                 updateUser(name)
-                .then(() => {
-                    console.log('update user' )
-                })
-                // console.log(loggedUser);
-            navigate('/');
+                    .then(() => {
+                        console.log('update user')
+
+                        const signedUser = { name: loggedUser.displayName, email: loggedUser.email };
+                        fetch('http://localhost:3000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(signedUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data);
+                                if (data.insertedId) {
+                                    navigate('/');
+                                }
+                            })
+
+                    })
+
             })
             .catch(() => {
                 // console.log(error);
