@@ -10,10 +10,38 @@ const AdminHome = () => {
             .then(data => setUsers(data))
     }, [])
     // console.log(users)
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const form = event.target;
+        const name = form.name.value;
+        const duration = form.duration.value;
+        const status = form.status.value;
+
+        const item = { name, duration, status };
+
+        fetch('http://localhost:3000/items', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(item)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                if(data.insertedId){
+                    form.reset();
+                }
+            })
+    }
+
     return (
         <div className='w-full flex flex-col-reverse items-center justify-center gap-10 my-10'>
+
             {/* create roadHub items */}
-            <form className='flex flex-col w-2/3 justify-center items-center gap-5 bg-linear-to-b from-cyan-900 to-cyan-600 py-8 rounded-2xl'>
+            <form onSubmit={handleSubmit} className='flex flex-col w-2/3 justify-center items-center gap-5 bg-linear-to-b from-cyan-900 to-cyan-600 py-8 rounded-2xl'>
 
                 <h1 className='text-center text-2xl font-extrabold mb-3 bg-white px-10 py-2 rounded-xl w-11/12'>Create Road_Hub Items</h1>
 
