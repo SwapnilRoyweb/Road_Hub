@@ -2,6 +2,7 @@ import React, { Component, useContext } from 'react'
 import background from '../../../public/Vibrant Geometric Logo - Road_Hub.png'
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/Authprovider';
+import Swal from 'sweetalert2';
 
 const Signup = () => {
 
@@ -41,6 +42,11 @@ const Signup = () => {
                                     console.log(signedUser);
                                     if(signedUser.user_or_admin === 'admin'){
                                         navigate('/adminHome')
+                                        Swal.fire({
+                                            title: "Good job!",
+                                            text: "User Sign up done!",
+                                            icon: "success"
+                                          });
                                     }else{
                                         navigate('/');
                                     }

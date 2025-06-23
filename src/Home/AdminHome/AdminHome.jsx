@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState } from 'react'
+import Swal from 'sweetalert2';
 
 const AdminHome = () => {
 
@@ -31,8 +32,13 @@ const AdminHome = () => {
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
-                if(data.insertedId){
+                if (data.insertedId) {
                     form.reset();
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Item added!",
+                        icon: "success"
+                    });
                 }
             })
     }

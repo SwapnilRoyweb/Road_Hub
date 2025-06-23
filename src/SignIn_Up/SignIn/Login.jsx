@@ -2,6 +2,7 @@ import React, { Component, useContext, useEffect, useState } from 'react'
 import background from '../../../public/Vibrant Geometric Logo - Road_Hub.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/Authprovider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 
@@ -39,8 +40,18 @@ const Login = () => {
                 // console.log(adminUser)
                 form.reset();
                 navigate('/adminHome');
+                Swal.fire({
+                    title: "Good job!",
+                    text: "Admin Signed In!",
+                    icon: "success"
+                  });
             }else if(onlyUser?.email === loggedUser?.email){
                 navigate('/');
+                Swal.fire({
+                    title: "Good job!",
+                    text: "User Signed In!",
+                    icon: "success"
+                  });
             }else{
                 navigate('/login')
             }
