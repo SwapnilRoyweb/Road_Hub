@@ -39,7 +39,7 @@ const Signup = () => {
                                 if (data.insertedId) {
                                     form.reset();
                                     console.log(signedUser);
-                                    if(signedUser.user_or_admin == 'admin'){
+                                    if(signedUser.user_or_admin === 'admin'){
                                         navigate('/adminHome')
                                     }else{
                                         navigate('/');

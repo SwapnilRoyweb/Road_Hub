@@ -3,7 +3,7 @@ import logo from '../../../public/Vibrant_Geometric_Logo_-_Road_Hub-removebg-pre
 
 const Footer = () => {
     return (
-        <div className='flex flex-col md:flex-row-reverse justify-center items-center bg-cyan-950 text-white rounded-2xl'>
+        <div className='my-3 flex flex-col md:flex-row-reverse justify-center items-center bg-cyan-950 text-white rounded-2xl'>
             <img src={logo} alt="" className='w-28 rounded-2xl' />
             <p className='text-xl text-center'>Copyright © 2025 - All right reserved by</p>
         </div>

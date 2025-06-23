@@ -10,7 +10,7 @@ const Main = () => {
   const noNavFoot = location.pathname.includes('login') || location.pathname.includes('signUp');
 
   return (
-    <div className='ml-5 mr-10'>
+    <div className='ml-5 mr-5'>
       {noNavFoot || <Navbar></Navbar>}
       <Outlet></Outlet>
       {noNavFoot || <Footer></Footer>}

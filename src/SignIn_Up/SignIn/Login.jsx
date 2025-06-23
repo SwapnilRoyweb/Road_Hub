@@ -35,12 +35,12 @@ const Login = () => {
         .then(result => {
             const loggedUser = result.user;
             // console.log(loggedUser);
-            if(adminUser.email === loggedUser?.email){
+            if(adminUser?.email === loggedUser?.email){
                 // console.log(adminUser)
                 form.reset();
                 navigate('/adminHome');
-            }else if(onlyUser.email === loggedUser?.email){
-                navigate(from, {replace: true});
+            }else if(onlyUser?.email === loggedUser?.email){
+                navigate('/');
             }else{
                 navigate('/login')
             }
@@ -77,7 +77,7 @@ const Login = () => {
                             </select>
                         </div> */}
 
-                        <input type='submit' value='SIgn In' className='w-xs h-14 hover:bg-cyan-900 border-4 border-y-0 border-cyan-950 bg-white text-cyan-950 hover:text-white hover:border-0 text-2xl font-extrabold rounded-full mt-3 flex flex-col items-center justify-center'></input>
+                        <input type='submit' value='Sign In' className='w-xs h-14 hover:bg-cyan-900 border-4 border-y-0 border-cyan-950 bg-white text-cyan-950 hover:text-white hover:border-0 text-2xl font-extrabold rounded-full mt-3 flex flex-col items-center justify-center'></input>
                     </form>
                     <p className='text-center mt-5 text-lg text-white font-semibold'>New here? Please <Link to='/signUp' className='font-extrabold text-black hover:text-white'>Sign Up</Link></p>
                 </div>
