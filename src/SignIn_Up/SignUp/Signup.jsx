@@ -37,6 +37,7 @@ const Signup = () => {
                             .then(data => {
                                 console.log(data);
                                 if (data.insertedId) {
+                                    form.reset();
                                     console.log(signedUser);
                                     if(signedUser.user_or_admin == 'admin'){
                                         navigate('/adminHome')
@@ -76,7 +77,11 @@ const Signup = () => {
 
                         <div className='flex items-center justify-center gap-3'>
                             <label htmlFor="email" className='text-xl font-bold text-black '>Sign Up as :</label>
-                            <input type="text" name='user_admin' value='user' className='w-xs h-10 bg-white rounded-full border-x-2 p-2' />
+                            {/* <input type="text" name='user_admin' value='user' className='w-xs h-10 bg-white rounded-full border-x-2 p-2' /> */}
+                            <select name='user_admin' className='w-xs h-10 bg-white rounded-full border-x-2 p-2'>
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
                         </div>
 
                         <div className='flex items-center justify-center gap-3'>

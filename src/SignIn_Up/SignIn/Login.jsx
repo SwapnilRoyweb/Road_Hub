@@ -1,4 +1,4 @@
-import React, { Component, useContext } from 'react'
+import React, { Component, useContext, useEffect, useState } from 'react'
 import background from '../../../public/Vibrant Geometric Logo - Road_Hub.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/Authprovider';
@@ -6,11 +6,22 @@ import { AuthContext } from '../../Providers/Authprovider';
 const Login = () => {
 
     const {signIn} = useContext(AuthContext);
+    const [users, setUsers] = useState([])
 
     const navigate = useNavigate();
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
+
+    useEffect(() => {
+        fetch('http://localhost:3000/users')
+        .then(res=> res.json())
+        .then(data => setUsers(data))
+    }, [])
+
+    const adminUser = users.find(u=> u.user_or_admin === 'admin');
+    const onlyUser = users.find(u=> u.user_or_admin === 'user');
+    // console.log(onlyUser)
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -18,13 +29,21 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.pass.value;
+        //const user_admin = form.user_admin.value;
 
         signIn(email, password)
         .then(result => {
             const loggedUser = result.user;
-            console.log(loggedUser);
-            form.reset();
-            navigate(from, {replace: true});
+            // console.log(loggedUser);
+            if(adminUser.email === loggedUser?.email){
+                // console.log(adminUser)
+                form.reset();
+                navigate('/adminHome');
+            }else if(onlyUser.email === loggedUser?.email){
+                navigate(from, {replace: true});
+            }else{
+                navigate('/login')
+            }
         })
         .catch(error => {
             console.log(error)
@@ -49,6 +68,14 @@ const Login = () => {
                             <label htmlFor="email" className='text-xl font-bold text-black '>Password :</label>
                             <input type="password" name='pass' className='w-xs h-10 bg-white rounded-full border-x-2 p-2' />
                         </div>
+
+                        {/* <div className='flex items-center justify-center gap-3'>
+                            <label htmlFor="email" className='text-xl font-bold text-black '>Sign up as :</label>
+                            <select name='user_admin' className=''>
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div> */}
 
                         <input type='submit' value='SIgn In' className='w-xs h-14 hover:bg-cyan-900 border-4 border-y-0 border-cyan-950 bg-white text-cyan-950 hover:text-white hover:border-0 text-2xl font-extrabold rounded-full mt-3 flex flex-col items-center justify-center'></input>
                     </form>
