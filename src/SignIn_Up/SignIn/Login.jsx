@@ -21,7 +21,7 @@ const Login = () => {
     }, [])
 
     const adminUser = users.find(u=> u.user_or_admin === 'admin');
-    const onlyUser = users.find(u=> u.user_or_admin === 'user');
+    const onlyUser = users.filter(u=> u.user_or_admin === 'user');
     // console.log(onlyUser)
 
     const handleLogin = (event) => {
@@ -45,7 +45,7 @@ const Login = () => {
                     text: "Admin Signed In!",
                     icon: "success"
                   });
-            }else if(onlyUser?.email === loggedUser?.email){
+            }else if(onlyUser.map(u=> u?.email  === loggedUser?.email)){
                 navigate('/');
                 Swal.fire({
                     title: "Good job!",
@@ -62,7 +62,7 @@ const Login = () => {
     }
 
     return (
-        <div className="bg-cover bg-center bg-repeat min-h-screen -ml-5 -mr-10 backdrop-opacity-90" style={{ backgroundImage: `url(${background})` }}>
+        <div className="bg-cover bg-center max-w-screen min-h-screen -ml-5 -mr-10 backdrop-opacity-90" style={{ backgroundImage: `url(${background})` }}>
             {/* Sign In Card */}
             <div className='flex flex-col items-center justify-center min-h-screen w-full'>
                 <div className='backdrop-blur-md w-fit h-fit p-10 rounded-2xl'>

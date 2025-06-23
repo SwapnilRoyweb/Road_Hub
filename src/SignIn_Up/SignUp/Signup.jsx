@@ -63,7 +63,7 @@ const Signup = () => {
     }
 
     return (
-        <div className="bg-cover bg-center bg-repeat min-h-screen -ml-5 -mr-10 backdrop-opacity-90" style={{ backgroundImage: `url(${background})` }}>
+        <div className="bg-cover bg-center max-w-screen min-h-screen -ml-5 -mr-10 backdrop-opacity-90" style={{ backgroundImage: `url(${background})` }}>
             {/* Sign Up Card */}
             <div className='flex flex-col items-center justify-center min-h-screen w-full'>
                 <div className='backdrop-blur-md w-fit h-fit p-10 rounded-2xl'>
