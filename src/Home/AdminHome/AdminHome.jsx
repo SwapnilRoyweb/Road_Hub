@@ -17,10 +17,11 @@ const AdminHome = () => {
 
         const form = event.target;
         const name = form.name.value;
+        const description = form.description.value;
         const duration = form.duration.value;
         const status = form.status.value;
 
-        const item = { name, duration, status };
+        const item = { name, description, duration, status };
 
         fetch('http://localhost:3000/items', {
             method: 'POST',
@@ -54,6 +55,11 @@ const AdminHome = () => {
                 <div className='flex items-center justify-center gap-3'>
                     <label htmlFor="email" className='text-xl font-bold text-white'>RoadHub Item:</label>
                     <input type="text" name='name' className='w-xs h-10 bg-white rounded-xl border-x-2 p-2' />
+                </div>
+
+                <div className='flex items-center justify-center gap-3'>
+                    <label htmlFor="email" className='text-xl font-bold text-white'>Description:</label>
+                    <input type="text" name='description' className='w-xs h-10 bg-white rounded-xl border-x-2 p-2' />
                 </div>
 
                 <div className='flex items-center justify-center gap-3'>

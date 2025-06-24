@@ -98,6 +98,17 @@ const Home = () => {
                                 <p className='font-bold text-2xl'>{runningItem.name}</p>
                                 <p className='bg-white text-black rounded-full my-3 font-semibold w-full'>{runningItem.status}</p>
                                 <p>Duration : {runningItem.duration}</p>
+                                <p className='bg-black rounded-lg text-white p-2 my-3'>Description: {runningItem.description}</p>
+                                <div className='bg-white text-black p-2 rounded-lg'>
+                                    <h1 className='font-semibold underline'>Comments</h1>
+                                    {runningItem.joinedData ? (runningItem.joinedData?.map(data =>
+                                        // console.log(data)
+                                        <div key={data} className='flex gap-1 items-center justify-center'>
+                                            <p className='font-semibold'>{data.name} :</p>
+                                            <p>{data.comment}</p>
+                                        </div>
+                                    )) : (<p>No comments Yet</p>)}
+                                </div>
                                 <form onSubmit={(event) => handleComment(event, runningItem)} className='flex justify-around items-center gap-1 my-3'>
                                     <input type="text" name='comment' className='bg-white rounded-lg text-black' />
                                     <input type="submit" value='comment' className='bg-white text-cyan-950 text-xs py-1 font-semibold px-3 rounded-full hover:bg-cyan-900 hover:text-white' />
@@ -118,8 +129,19 @@ const Home = () => {
                                 <p className='font-bold text-2xl'>{completedItem.name}</p>
                                 <p className='bg-white text-black rounded-full my-3 font-semibold w-full'>{completedItem.status}</p>
                                 <p>Duration : {completedItem.duration}</p>
-                                <form className='flex justify-around items-center gap-1 my-3'>
-                                    <input type="text" className='bg-white rounded-lg text-black' />
+                                <p className='bg-black rounded-lg text-white p-2 my-3'>Description: {completedItem.description}</p>
+                                <div className='bg-white text-black p-2 rounded-lg'>
+                                    <h1 className='font-semibold underline'>Comments</h1>
+                                    {completedItem.joinedData ? (completedItem.joinedData?.map(data =>
+                                        // console.log(data)
+                                        <div key={data} className='flex gap-1 items-center justify-center'>
+                                            <p className='font-semibold'>{data.name} :</p>
+                                            <p>{data.comment}</p>
+                                        </div>
+                                    )) : (<p>No comments Yet</p>)}
+                                </div>
+                                <form onSubmit={(event) => handleComment(event, completedItem)} className='flex justify-around items-center gap-1 my-3'>
+                                    <input type="text" name='comment' className='bg-white rounded-lg text-black' />
                                     <input type="submit" value='comment' className='bg-white text-cyan-950 text-xs py-1 font-semibold px-3 rounded-full hover:bg-cyan-900 hover:text-white' />
                                 </form>
                                 {/* <button className='bg-white text-cyan-950 py-1 rounded-tl-2xl rounded-tr-2xl hover:bg-cyan-900 hover:text-white w-full mt-3 font-bold disabled:'>Join</button> */}
