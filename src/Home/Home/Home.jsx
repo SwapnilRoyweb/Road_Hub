@@ -49,6 +49,33 @@ const Home = () => {
         }
     }
 
+    const handleComment = (event, item) => {
+        event.preventDefault();
+
+        const form = event.target;
+        const comment = form.comment.value;
+
+        const updateUser = { name: user?.displayName, email: user?.email, comment };
+
+        fetch(`http://localhost:3000/items/${item?._id}/join`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateUser)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    // console.log(data)
+                    Swal.fire({
+                        text: "Successfully commented!",
+                        icon: "success"
+                    });
+                }
+            })
+    }
+
     return (
         <div>
             <div>
@@ -71,8 +98,8 @@ const Home = () => {
                                 <p className='font-bold text-2xl'>{runningItem.name}</p>
                                 <p className='bg-white text-black rounded-full my-3 font-semibold w-full'>{runningItem.status}</p>
                                 <p>Duration : {runningItem.duration}</p>
-                                <form className='flex justify-around items-center gap-1 my-3'>
-                                    <input type="text" className='bg-white rounded-lg text-black' />
+                                <form onSubmit={(event) => handleComment(event, runningItem)} className='flex justify-around items-center gap-1 my-3'>
+                                    <input type="text" name='comment' className='bg-white rounded-lg text-black' />
                                     <input type="submit" value='comment' className='bg-white text-cyan-950 text-xs py-1 font-semibold px-3 rounded-full hover:bg-cyan-900 hover:text-white' />
                                 </form>
                                 <button onClick={() => handleJoined(runningItem)} className='bg-white text-cyan-950 py-1 rounded-tl-2xl rounded-tr-2xl hover:bg-cyan-900 hover:text-white w-full mt-3 font-bold'>Join Now</button>
