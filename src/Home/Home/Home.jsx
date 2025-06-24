@@ -1,10 +1,15 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { Component, useContext, useEffect, useState } from 'react'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { AuthContext } from '../../Providers/Authprovider';
+import Swal from 'sweetalert2';
 
 const Home = () => {
 
     const [items, setItems] = useState([]);
+    // const [joined, setJoined] = useState(false);
+
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         fetch('http://localhost:3000/items')
@@ -15,8 +20,34 @@ const Home = () => {
     const runningItems = items.filter(item => item.status == 'running');
     const completedItems = items.filter(item => item.status == 'completed');
 
-    console.log(runningItems)
-    console.log(completedItems)
+    // console.log(runningItems)
+    // console.log(completedItems)
+
+    const handleJoined = item => {
+        if (user) {
+            const joinedItem = { joinedItemId: item._id, joinedItemName: item.name, userName: user.displayName, email: user.email };
+
+            fetch('http://localhost:3000/joins', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(joinedItem)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        // console.log(data)
+                        // setJoined(true);
+                        Swal.fire({
+                            title: "Good job!",
+                            text: `User Joined to ${item.name}!`,
+                            icon: "success"
+                        });
+                    }
+                })
+        }
+    }
 
     return (
         <div>
@@ -44,7 +75,7 @@ const Home = () => {
                                     <input type="text" className='bg-white rounded-lg text-black' />
                                     <input type="submit" value='comment' className='bg-white text-cyan-950 text-xs py-1 font-semibold px-3 rounded-full hover:bg-cyan-900 hover:text-white' />
                                 </form>
-                                <button className='bg-white text-cyan-950 py-1 rounded-tl-2xl rounded-tr-2xl hover:bg-cyan-900 hover:text-white w-full mt-3 font-bold'>Join</button>
+                                <button onClick={() => handleJoined(runningItem)} className='bg-white text-cyan-950 py-1 rounded-tl-2xl rounded-tr-2xl hover:bg-cyan-900 hover:text-white w-full mt-3 font-bold'>Join Now</button>
                             </div>)}
                         </div>
                     </TabPanel>
@@ -56,7 +87,7 @@ const Home = () => {
                             data-aos-mirror="true"
                             data-aos-once="false"
                             data-aos-anchor-placement="top-center">
-                             {completedItems.map(completedItem => <div className='flex flex-col items-center justify-center w-fit h-fit bg-cyan-700 text-center p-5 rounded-xl text-white border-2 border-white border-t-0 border-b-0' key={completedItem._id}>
+                            {completedItems.map(completedItem => <div className='flex flex-col items-center justify-center w-fit h-fit bg-cyan-700 text-center p-5 rounded-xl text-white border-2 border-white border-t-0 border-b-0' key={completedItem._id}>
                                 <p className='font-bold text-2xl'>{completedItem.name}</p>
                                 <p className='bg-white text-black rounded-full my-3 font-semibold w-full'>{completedItem.status}</p>
                                 <p>Duration : {completedItem.duration}</p>
