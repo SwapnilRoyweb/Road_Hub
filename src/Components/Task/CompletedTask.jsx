@@ -4,7 +4,7 @@ import { AuthContext } from '../../Providers/Authprovider';
 
 const CompletedTask = ({ completedItem }) => {
 
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const handleComment = (event, item) => {
         event.preventDefault();
@@ -34,6 +34,28 @@ const CompletedTask = ({ completedItem }) => {
             })
     }
 
+    const handleDelete = (item, comment) => {
+        // console.log(item.joinedData.email);
+        fetch(`http://localhost:3000/items/${item?._id}/remove-comment`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(comment)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    // console.log(data)
+                    Swal.fire({
+                        text: "Comment Deleted Successfully!",
+                        icon: "success"
+                    });
+                }
+            })
+
+    }
+
     return (
         <div className='flex flex-col items-center justify-center w-fit h-fit bg-cyan-700 text-center p-5 rounded-xl text-white border-2 border-white border-t-0 border-b-0' key={completedItem._id}>
             <p className='font-bold text-2xl'>{completedItem.name}</p>
@@ -47,8 +69,8 @@ const CompletedTask = ({ completedItem }) => {
                     <div key={data} className='flex gap-1 items-center justify-center'>
                         <p className='font-semibold'>{data.name} :</p>
                         <p>{data.comment}</p>
-                        <button className='bg-white text-cyan-900 text-xs py-1 font-semibold px-2 rounded-full hover:bg-cyan-900 hover:text-white'>Edit</button>
-                        <button className='bg-white text-red-600 text-xs py-1 font-semibold px-2 rounded-full hover:bg-red-600 hover:text-white'>Delete</button>
+                        {user?.email == data.email && (<button className='bg-white text-cyan-900 text-xs py-1 font-semibold px-2 rounded-full hover:bg-cyan-900 hover:text-white'>Edit</button>)}
+                        {user?.email == data.email && (<button onClick={() => handleDelete(completedItem, data)} className='bg-white text-red-600 text-xs py-1 font-semibold px-2 rounded-full hover:bg-red-600 hover:text-white'>Delete</button>)}
                     </div>
                 )) : (<p>No comments Yet</p>)}
             </div>
