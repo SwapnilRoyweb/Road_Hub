@@ -12,6 +12,8 @@ import Signup from './SignIn_Up/SignUp/Signup.jsx';
 import Authprovider from './Providers/Authprovider.jsx';
 import Privateroute from './Routes/Privateroute.jsx';
 import AdminHome from './Home/AdminHome/AdminHome.jsx';
+import EditRunningTask from './Components/EditTask/EditRunningTask.jsx';
+import EditCompletedtask from './Components/EditTask/EditCompletedTask.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,16 @@ const router = createBrowserRouter([
       {
         path: 'adminHome',
         element: <Privateroute><AdminHome></AdminHome></Privateroute>
+      },
+      {
+        path: 'runningUpdateComment/:id',
+        element: <EditRunningTask></EditRunningTask>,
+        loader: ({params}) => fetch(`http://localhost:3000/items/${params.id}/edit-comment`)
+      },
+      {
+        path: 'completedUpdateComment/:id',
+        element: <Privateroute><EditCompletedtask></EditCompletedtask></Privateroute>,
+        loader: ({params}) => fetch(`http://localhost:3000/items/${params.id}/edit-comment`)
       }
     ]
   }

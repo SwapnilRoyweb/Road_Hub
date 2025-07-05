@@ -1,6 +1,7 @@
 import React, { Component, useContext } from 'react'
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Providers/Authprovider';
+import { Link } from 'react-router-dom';
 
 const CompletedTask = ({ completedItem }) => {
 
@@ -69,14 +70,14 @@ const CompletedTask = ({ completedItem }) => {
                     <div key={data} className='flex gap-1 items-center justify-center'>
                         <p className='font-semibold'>{data.name} :</p>
                         <p>{data.comment}</p>
-                        {user?.email == data.email && (<button className='bg-white text-cyan-900 text-xs py-1 font-semibold px-2 rounded-full hover:bg-cyan-900 hover:text-white'>Edit</button>)}
+                        {user?.email == data.email && (<Link to={`completedUpdateComment/${completedItem._id}`}><button className='bg-white text-cyan-900 text-xs py-1 font-semibold px-2 rounded-full hover:bg-cyan-900 hover:text-white'>Edit</button></Link>)}
                         {user?.email == data.email && (<button onClick={() => handleDelete(completedItem, data)} className='bg-white text-red-600 text-xs py-1 font-semibold px-2 rounded-full hover:bg-red-600 hover:text-white'>Delete</button>)}
                     </div>
                 )) : (<p>No comments Yet</p>)}
             </div>
             <form onSubmit={(event) => handleComment(event, completedItem)} className='flex justify-around items-center gap-1 my-3'>
                 <input type="text" name='comment' className='bg-white rounded-lg text-black' />
-                <input type="submit" value='comment' className='bg-white text-cyan-950 text-xs py-1 font-semibold px-3 rounded-full hover:bg-cyan-900 hover:text-white' />
+                <input type="submit" value='comment' className='bg-white text-cyan-950 text-xs pb-1 font-semibold px-3 rounded-full hover:bg-cyan-900 hover:text-white' />
             </form>
             {/* <button className='bg-white text-cyan-950 py-1 rounded-tl-2xl rounded-tr-2xl hover:bg-cyan-900 hover:text-white w-full mt-3 font-bold disabled:'>Join</button> */}
         </div>
