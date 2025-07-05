@@ -47,6 +47,8 @@ const CompletedTask = ({ completedItem }) => {
                     <div key={data} className='flex gap-1 items-center justify-center'>
                         <p className='font-semibold'>{data.name} :</p>
                         <p>{data.comment}</p>
+                        <button className='bg-white text-cyan-900 text-xs py-1 font-semibold px-2 rounded-full hover:bg-cyan-900 hover:text-white'>Edit</button>
+                        <button className='bg-white text-red-600 text-xs py-1 font-semibold px-2 rounded-full hover:bg-red-600 hover:text-white'>Delete</button>
                     </div>
                 )) : (<p>No comments Yet</p>)}
             </div>

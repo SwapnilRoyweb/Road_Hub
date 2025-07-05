@@ -70,9 +70,11 @@ const RunningTask = ({ runningItem }) => {
                 <h1 className='font-semibold underline'>Comments</h1>
                 {runningItem.joinedData ? (runningItem.joinedData?.map(data =>
                     // console.log(data)
-                    <div key={data.index} className='flex gap-1 items-center justify-center'>
+                    <div key={data.index} className='flex gap-1 items-center justify-center my-2'>
                         <p className='font-semibold'>{data.name} :</p>
                         <p>{data.comment}</p>
+                        <button className='bg-white text-cyan-900 text-xs py-1 font-semibold px-2 rounded-full hover:bg-cyan-900 hover:text-white'>Edit</button>
+                        <button className='bg-white text-red-600 text-xs py-1 font-semibold px-2 rounded-full hover:bg-red-600 hover:text-white'>Delete</button>
                     </div>
                 )) : (<p>No comments Yet</p>)}
             </div>
