@@ -6,7 +6,7 @@ const AdminHome = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/users')
+        fetch('https://road-hub-server.vercel.app/users')
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
@@ -23,7 +23,7 @@ const AdminHome = () => {
 
         const item = { name, description, duration, status };
 
-        fetch('http://localhost:3000/items', {
+        fetch('https://road-hub-server.vercel.app/items', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

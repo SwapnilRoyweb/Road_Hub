@@ -39,12 +39,12 @@ const router = createBrowserRouter([
       {
         path: 'runningUpdateComment/:id',
         element: <Privateroute><EditRunningTask></EditRunningTask></Privateroute>,
-        loader: ({params}) => fetch(`http://localhost:3000/items/${params.id}`)
+        loader: ({params}) => fetch(`https://road-hub-server.vercel.app/items/${params.id}`)
       },
       {
         path: 'completedUpdateComment/:id',
         element: <Privateroute><EditCompletedtask></EditCompletedtask></Privateroute>,
-        loader: ({params}) => fetch(`http://localhost:3000/items/${params.id}`)
+        loader: ({params}) => fetch(`https://road-hub-server.vercel.app/items/${params.id}`)
       }
     ]
   }

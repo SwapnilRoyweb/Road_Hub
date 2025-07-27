@@ -15,7 +15,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/';
 
     useEffect(() => {
-        fetch('http://localhost:3000/users')
+        fetch('https://road-hub-server.vercel.app/users')
         .then(res=> res.json())
         .then(data => setUsers(data))
     }, [])

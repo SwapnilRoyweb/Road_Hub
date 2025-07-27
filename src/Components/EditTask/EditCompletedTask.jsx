@@ -19,7 +19,7 @@ const EditCompletedtask = () => {
    
            const updateUserComment = { name: user?.displayName, email: user?.email, previousComment: updateComment };
    
-           fetch(`http://localhost:3000/items/${item?._id}/edit-comment`, {
+           fetch(`https://road-hub-server.vercel.app/items/${item?._id}/edit-comment`, {
                method: 'PATCH',
                headers: {
                    'content-type': 'application/json'

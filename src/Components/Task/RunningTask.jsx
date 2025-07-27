@@ -11,7 +11,7 @@ const RunningTask = ({ runningItem }) => {
         if (user) {
             const joinedItem = { joinedItemId: item._id, joinedItemName: item.name, userName: user.displayName, email: user.email };
 
-            fetch('http://localhost:3000/joins', {
+            fetch('https://road-hub-server.vercel.app/joins', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -42,7 +42,7 @@ const RunningTask = ({ runningItem }) => {
 
         const updateUser = { name: user?.displayName, email: user?.email, comment };
 
-        fetch(`http://localhost:3000/items/${item?._id}/join`, {
+        fetch(`https://road-hub-server.vercel.app/items/${item?._id}/join`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -63,7 +63,7 @@ const RunningTask = ({ runningItem }) => {
 
     const handleDelete = (item, comment) => {
         // console.log(item.joinedData.email);
-        fetch(`http://localhost:3000/items/${item?._id}/remove-comment`, {
+        fetch(`https://road-hub-server.vercel.app/items/${item?._id}/remove-comment`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

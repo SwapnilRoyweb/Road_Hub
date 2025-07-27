@@ -14,7 +14,7 @@ const Home = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch('http://localhost:3000/items')
+        fetch('https://road-hub-server.vercel.app/items')
             .then(res => res.json())
             .then(data => setItems(data))
     }, [])

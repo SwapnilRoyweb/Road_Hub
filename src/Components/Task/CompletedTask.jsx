@@ -16,7 +16,7 @@ const CompletedTask = ({ completedItem }) => {
 
         const updateUser = { name: user?.displayName, email: user?.email, comment };
 
-        fetch(`http://localhost:3000/items/${item?._id}/join`, {
+        fetch(`https://road-hub-server.vercel.app/items/${item?._id}/join`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -37,7 +37,7 @@ const CompletedTask = ({ completedItem }) => {
 
     const handleDelete = (item, comment) => {
         // console.log(item.joinedData.email);
-        fetch(`http://localhost:3000/items/${item?._id}/remove-comment`, {
+        fetch(`https://road-hub-server.vercel.app/items/${item?._id}/remove-comment`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

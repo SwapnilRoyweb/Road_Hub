@@ -27,7 +27,7 @@ const Signup = () => {
                         console.log('update user')
 
                         const signedUser = { name: loggedUser.displayName, email: loggedUser.email, user_or_admin };
-                        fetch('http://localhost:3000/users', {
+                        fetch('https://road-hub-server.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
