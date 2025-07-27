@@ -1,12 +1,53 @@
-# React + Vite
+# RoadHub 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+RoadHub is a collaborative roadmap platform that allows users to join roadmap items, upvote, and comment – enabling teamwork and idea sharing.
 
-Currently, two official plugins are available:
+## 🌐 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Frontend**: [https://roadhub-677ca.web.app/](https://roadhub-677ca.web.app/)
+- **Backend API**: [https://road-hub-server.vercel.app/](https://road-hub-server.vercel.app/)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Features
+
+- User authentication (signup/login)
+- View and join predefined roadmap items
+- Add comments on items
+- Upvote roadmap items
+- Edit and delete own comments (feature under development)
+- Clean, responsive UI built with React
+
+---
+
+## 🧑‍💻 Admin Access
+
+For testing/admin access, you can use:
+
+- **Admin Email:** `swapnilroyweb@gmail.com`
+- **Admin Password:** `13591011`
+
+---
+
+## 📦 Tech Stack
+
+- **Frontend:** React, Tailwind CSS, Firebase Hosting
+- **Backend:** Node.js, Express.js, MongoDB, deployed on Vercel
+
+---
+
+## ✅ Deployment
+
+- Frontend deployed on Firebase Hosting: [https://roadhub-677ca.web.app/](https://roadhub-677ca.web.app/)
+- Backend deployed on Vercel: [https://road-hub-server.vercel.app/](https://road-hub-server.vercel.app/)
+
+---
+
+## ⚙️ Getting Started (Local Development)
+
+1. Clone the repository
+2. Install dependencies
+
+```bash
+npm install
+
