@@ -5,6 +5,7 @@ import { AuthContext } from '../../Providers/Authprovider';
 import Swal from 'sweetalert2';
 import RunningTask from '../../Components/Task/RunningTask';
 import CompletedTask from '../../Components/Task/CompletedTask';
+import { useRevalidator } from 'react-router-dom';
 
 const Home = () => {
 
@@ -12,6 +13,8 @@ const Home = () => {
     // const [joined, setJoined] = useState(false);
 
     const { user } = useContext(AuthContext);
+
+    const {revalidate} = useRevalidator();
 
     useEffect(() => {
         fetch('https://road-hub-server.vercel.app/items')

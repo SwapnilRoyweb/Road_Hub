@@ -1,11 +1,13 @@
 import React, { Component, useContext } from 'react'
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Providers/Authprovider';
-import { Link } from 'react-router-dom';
+import { Link, useRevalidator } from 'react-router-dom';
 
 const CompletedTask = ({ completedItem }) => {
 
     const { user } = useContext(AuthContext);
+
+    const {revalidate} = useRevalidator();
 
     const handleComment = (event, item) => {
         event.preventDefault();
@@ -31,6 +33,7 @@ const CompletedTask = ({ completedItem }) => {
                         text: "Successfully commented!",
                         icon: "success"
                     });
+                    revalidate();
                 }
             })
     }
@@ -52,6 +55,7 @@ const CompletedTask = ({ completedItem }) => {
                         text: "Comment Deleted Successfully!",
                         icon: "success"
                     });
+                    revalidate();
                 }
             })
 

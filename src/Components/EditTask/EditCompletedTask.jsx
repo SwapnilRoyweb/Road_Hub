@@ -1,6 +1,6 @@
 import React, { Component, useContext } from 'react'
 import { AuthContext } from '../../Providers/Authprovider';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useRevalidator } from 'react-router-dom';
 
 const EditCompletedtask = () => {
 
@@ -8,6 +8,8 @@ const EditCompletedtask = () => {
 
     const completedTask = useLoaderData();
     console.log(completedTask)
+
+    const {revalidate} = useRevalidator();
 
    const handleUpdateComment = (event, item) => {
            event.preventDefault();
@@ -34,6 +36,7 @@ const EditCompletedtask = () => {
                            text: "Successfully commented!",
                            icon: "success"
                        });
+                       revalidate();
                    }
                })
        }

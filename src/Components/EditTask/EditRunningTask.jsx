@@ -1,10 +1,12 @@
 import React, { Component, useContext } from 'react'
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useRevalidator } from 'react-router-dom';
 import { AuthContext } from '../../Providers/Authprovider';
 import Swal from 'sweetalert2';
 
 const EditRunningTask = () => {
     const { user } = useContext(AuthContext);
+
+    const {revalidate} = useRevalidator();
 
     const runningTask = useLoaderData();
     // console.log(runningTask.joinedData.forEach(element => {
@@ -36,6 +38,7 @@ const EditRunningTask = () => {
                             text: `User Joined to ${item.name}!`,
                             icon: "success"
                         });
+                        revalidate();
                     }
                 })
         }
@@ -66,6 +69,7 @@ const EditRunningTask = () => {
                         text: "Successfully commented!",
                         icon: "success"
                     });
+                    revalidate();
                 }
             })
     }

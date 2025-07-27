@@ -1,11 +1,13 @@
 import React, { Component, useContext } from 'react'
 import { AuthContext } from '../../Providers/Authprovider';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useRevalidator } from 'react-router-dom';
 
 const RunningTask = ({ runningItem }) => {
 
     const {user} = useContext(AuthContext);
+
+    const {revalidate} = useRevalidator();
 
     const handleJoined = item => {
         if (user) {
@@ -28,6 +30,7 @@ const RunningTask = ({ runningItem }) => {
                             text: `User Joined to ${item.name}!`,
                             icon: "success"
                         });
+                        revalidate();
                     }
                 })
         }
@@ -57,6 +60,7 @@ const RunningTask = ({ runningItem }) => {
                         text: "Successfully commented!",
                         icon: "success"
                     });
+                    revalidate();
                 }
             })
     }
@@ -78,6 +82,7 @@ const RunningTask = ({ runningItem }) => {
                         text: "Comment Deleted Successfully!",
                         icon: "success"
                     });
+                    revalidate();
                 }
             })
         
